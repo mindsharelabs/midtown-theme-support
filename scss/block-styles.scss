@@ -15,7 +15,13 @@ $dark:          #2B2B2B;
   -o-transition: all $speed ease-in-out;
   transition: all $speed ease-in-out;
 }
-
+.branded-container {
+  background-size: 250px;
+  background-position: top -25px right -25px;
+  background-repeat: no-repeat;
+  transition: all 0.25s ease;
+  background-image: url('../img/element_white.png');
+}
 .testimonials-slider {
   .testimonial-slide {
     .blockquote {
@@ -127,7 +133,7 @@ $dark:          #2B2B2B;
       h2 {
         font-size: 35px;
         text-transform: uppercase;
-        line-height: 30px;
+        line-height: 35px;
         letter-spacing: 1px;
       }
       .list-items {

@@ -30,7 +30,7 @@ if($number_repeater) :
 
     echo '<div class="row my-4">';
       foreach ($number_repeater['stats'] as $key => $stat) :
-        echo '<div class="col-6 col-md-3 number-container text-center">';
+        echo '<div class="col-6 col-md-3 number-container text-center mb-4 mb-md-0">';
 
           echo '<h3 class="count-up number" data-count="' . $stat['number']  .'">0</h3>';
           echo '<span class="label">' . $stat['label'] . '</span>';
