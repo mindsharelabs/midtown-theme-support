@@ -30,20 +30,76 @@ add_action('acf/init', function () {
 	// Check function exists.
 	if( function_exists('acf_register_block_type') ) {
 
+
 		acf_register_block_type(array(
-			'name'              => 'midtown-cta-cards',
-			'title'             => __('Call to Action Cards'),
-			'description'       => __('CAll to action cards that span the width of the page.'),
-			'render_template'   => MIDTOWN_ABSPATH . '/inc/block-templates/midtown-cta-cards.php',
-			'category'          => 'mind-blocks',
+			'name'              => 'vision-cards',
+			'title'             => __('Vision Cards'),
+			'description'       => __('Branding specific cards use to display the vision of the site on the site.'),
+			'render_template'   => MIDTOWN_ABSPATH . '/inc/block-templates/vision-cards.php',
+			'category'          => 'midtown-blocks',
 			'icon'              => file_get_contents(MIDTOWN_ABSPATH . 'inc/img/logo.svg'),
-			'keywords'          => array( 'call', 'action', 'post', 'midtown', 'mind', 'Mindshare' ),
+			'keywords'          => array( 'cards', 'brand', 'vision', 'lifestyle', 'card', 'midtown', 'mind', 'Mindshare' ),
 			'align'             => 'full',
 			'mode'            	=> 'edit',
 			'supports'					=> array(
 				'align' => false,
-				'mode' => false,
-				'jsx' => false
+	      'mode' => false,
+	      'jsx' => false
+			),
+			'enqueue_assets' => function(){
+				// We're just registering it here and then with the action get_footer we'll enqueue it.
+				wp_register_style( 'midtown-block-styles', MIDTOWN_URL . '/inc/css/block-styles.css' );
+				add_action( 'get_footer', function () {wp_enqueue_style('midtown-block-styles');});
+
+
+				},
+			)
+		);
+
+
+		acf_register_block_type(array(
+			'name'              => 'number-repeater',
+			'title'             => __('Column Number Counter'),
+			'description'       => __('A block that displays number stats that count up.'),
+			'render_template'   => MIDTOWN_ABSPATH . '/inc/block-templates/number-repeater.php',
+			'category'          => 'midtown-blocks',
+			'icon'              => file_get_contents(MIDTOWN_ABSPATH . 'inc/img/logo.svg'),
+			'keywords'          => array( 'number','count', 'up', 'midtown', 'mind', 'Mindshare' ),
+			'align'             => 'full',
+			'mode'            	=> 'edit',
+			'supports'					=> array(
+				'align' => false,
+	      'mode' => false,
+	      'jsx' => false
+			),
+			'enqueue_assets' => function(){
+				// We're just registering it here and then with the action get_footer we'll enqueue it.
+				wp_register_style( 'midtown-block-styles', MIDTOWN_URL . '/inc/css/block-styles.css' );
+				add_action( 'get_footer', function () {wp_enqueue_style('midtown-block-styles');});
+
+				wp_register_script('count-up-init', MIDTOWN_URL . 'inc/js/count-up-init.js', array('jquery'), MAPI_PLUGIN_VERSION, true);
+				wp_enqueue_script('count-up-init');
+
+
+				},
+			)
+		);
+
+
+		acf_register_block_type(array(
+			'name'              => 'multi-link-feature',
+			'title'             => __('Multi Link Feature'),
+			'description'       => __('A feature block that displays multiple links and images.'),
+			'render_template'   => MIDTOWN_ABSPATH . '/inc/block-templates/multi-link-feature.php',
+			'category'          => 'midtown-blocks',
+			'icon'              => file_get_contents(MIDTOWN_ABSPATH . 'inc/img/logo.svg'),
+			'keywords'          => array( 'feature', 'links', 'images', 'gallery', 'midtown', 'mind', 'Mindshare' ),
+			'align'             => 'full',
+			'mode'            	=> 'edit',
+			'supports'					=> array(
+				'align' => false,
+	      'mode' => false,
+	      'jsx' => false
 			),
 			'enqueue_assets' => function(){
 				// We're just registering it here and then with the action get_footer we'll enqueue it.
@@ -135,91 +191,7 @@ add_action('acf/init', function () {
 
 	if( function_exists('acf_add_local_field_group') ):
 
-		acf_add_local_field_group(array(
-			'key' => 'group_6075d6c028d9d',
-			'title' => 'Block: Blog Post List',
-			'fields' => array(
-				array(
-					'key' => 'field_6075d6c407edc',
-					'label' => 'Blog Post List',
-					'name' => 'blog_post_list',
-					'type' => 'group',
-					'instructions' => '',
-					'required' => 0,
-					'conditional_logic' => 0,
-					'wrapper' => array(
-						'width' => '',
-						'class' => '',
-						'id' => '',
-					),
-					'layout' => 'block',
-					'sub_fields' => array(
-						array(
-							'key' => 'field_6075d6c907edd',
-							'label' => 'Blog Categories',
-							'name' => 'blog_categories',
-							'type' => 'taxonomy',
-							'instructions' => '',
-							'required' => 0,
-							'conditional_logic' => 0,
-							'wrapper' => array(
-								'width' => '',
-								'class' => '',
-								'id' => '',
-							),
-							'taxonomy' => 'category',
-							'field_type' => 'checkbox',
-							'add_term' => 0,
-							'save_terms' => 0,
-							'load_terms' => 0,
-							'return_format' => 'id',
-							'multiple' => 0,
-							'allow_null' => 0,
-						),
-						array(
-							'key' => 'field_6075d6eb07ede',
-							'label' => 'Posts to Show',
-							'name' => 'posts_to_show',
-							'type' => 'number',
-							'instructions' => '',
-							'required' => 0,
-							'conditional_logic' => 0,
-							'wrapper' => array(
-								'width' => '',
-								'class' => '',
-								'id' => '',
-							),
-							'default_value' => '',
-							'placeholder' => '',
-							'prepend' => '',
-							'append' => '',
-							'min' => 1,
-							'max' => 12,
-							'step' => '',
-						),
-					),
-				),
-			),
-			'location' => array(
-				array(
-					array(
-						'param' => 'block',
-						'operator' => '==',
-						'value' => 'acf/midtown-blog-posts',
-					),
-				),
-			),
-			'menu_order' => 0,
-			'position' => 'normal',
-			'style' => 'default',
-			'label_placement' => 'top',
-			'instruction_placement' => 'label',
-			'hide_on_screen' => '',
-			'active' => true,
-			'description' => '',
-		));
-
-		endif;
+	endif;
 
 
 

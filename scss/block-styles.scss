@@ -1,10 +1,14 @@
 //
 
-$primary:       #EE3722;
-$secondary:     #FFC00E;
+$primary:       #0f3051;
+$secondary:     #eb3e38;
+$info:          #B7CCDC;
+$warning:       #f89821;
+$danger:        #eb3e38;
+$light:         #f8f9fa;
 $dark:          #2B2B2B;
 
-@mixin transiton($speed) {
+@mixin transition($speed) {
   -webkit-transition: all $speed ease-in-out;
   -moz-transition: all $speed ease-in-out;
   -ms-transition: all $speed ease-in-out;
@@ -12,6 +16,188 @@ $dark:          #2B2B2B;
   transition: all $speed ease-in-out;
 }
 
+
+.vision-cards {
+  .vision-card {
+    border-bottom: 10px solid #fff;
+
+    .vision-image {
+      background-position: center center;
+      background-size: cover;
+      position: relative;
+      min-height: 300px;
+
+      &:hover {
+        .vertical-line {
+          width: 30px;
+          border-width: 15px;
+          @include transition(100ms);
+        }
+      }
+    }
+    .vision-content {
+      padding: 55px;
+      position: relative;
+      &:hover {
+        .vertical-line {
+          width: 30px;
+          border-width: 15px;
+          @include transition(100ms);
+        }
+      }
+      h2 {
+        font-size: 35px;
+        text-transform: uppercase;
+        line-height: 30px;
+        letter-spacing: 1px;
+      }
+      .list-items {
+        font-size: 1.1em;
+        font-weight: bold;
+        margin-top: 25px;
+        span.list-icon {
+          display: inline-block;
+          line-height: 1em;
+          margin-bottom: 15px;
+          margin-left: 25px;
+          position: relative;
+          &:before {
+            content: '\f054';
+            display: none;
+            font-style: normal;
+            font-variant: normal;
+            text-rendering: auto;
+            font-size: .9em;
+            -webkit-font-smoothing: antialiased;
+            font-family: "Font Awesome 5 Pro";
+            font-weight: 900;
+          }
+          svg {
+            position: absolute;
+            left: -21px;
+            top: 0px;
+          }
+        }
+      }
+    }
+    .vertical-line {
+      border-color: #ed4440;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      width: 20px;
+      background: #fff;
+      border-style: solid;
+      border-width: 10px;
+      border-top: 0;
+      border-bottom: 0;
+      @include transition(400ms);
+      &.right {
+        right: 0;
+        border-left: 0;
+      }
+      &.left {
+        left: 0;
+        border-right: 0;
+      }
+    }
+  }
+}
+
+.number-repeater {
+  .number-container {
+    h3.number {
+      color: $primary;
+      line-height: 25px;
+      font-size: 55px;
+    }
+    span.label {
+      line-height: 28px;
+      display: block;
+      margin-top: 20px;
+      font-size: 1.2em;
+      display: block;
+      color: #777;
+      font-weight: 500;
+    }
+  }
+}
+.multi-link-feature {
+  display: table;
+  table-layout: fixed;
+  width: 100%;
+  .cell {
+    display: table-cell;
+    vertical-align: middle;
+    float: none;
+    display: flex;
+    flex-direction: column;
+    .tile {
+      background-position: center center;
+      background-size: cover;
+      margin-bottom: 12px;
+      position: relative;
+      width: 100%;
+      padding: 10px;
+      height: 100%;
+      @include transition(300ms);
+      .blur {
+        position: absolute;
+        top:0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        z-index: 1;
+      }
+      &:hover:not(.no-background) {
+        .blur {
+          backdrop-filter: blur(5px);
+          @include transition(100ms);
+        }
+      }
+      &.no-background {
+        background-color: $danger;
+        background-size: 250px;
+        background-position: top -25px right -25px;
+        background-repeat: no-repeat;
+        transition: all 0.25s ease;
+        background-image: url('../img/element_white.png');
+      }
+      h2.background {
+        background-color: $light;
+        text-transform: uppercase;
+        color: $primary;
+        font-size: 2.7em;
+        display: inline;
+        line-height: 1.7em;
+        z-index: 20;
+        white-space: break-spaces;
+        position: relative;
+      }
+      a {
+        color: $primary;
+        @include transition(500ms);
+        &:hover {
+          text-decoration: none;
+          color: lighten($primary, 20%);
+          @include transition(100ms);
+        }
+      }
+      &.tile-2 {
+        // height: 100%;
+      }
+      &.bottom {
+        padding-top: 150px;
+      }
+      &.center {
+        padding-top: 75px;
+        padding-bottom: 75px;
+        align-items: center;
+        display: flex;
+      }
+    }
+  }
+}
 .midtown-blog-posts {
   .card-body {
     h3.post-title {
@@ -37,11 +223,7 @@ $dark:          #2B2B2B;
 
 }
 
-.midtown-cta-cards {
-  .cta-card {
-    min-width: 33%;
-  }
-}
+
 // XS styles - default: x <= 479px
 //xs: 0,
 //sm: 576px,
@@ -49,20 +231,78 @@ $dark:          #2B2B2B;
 //lg: 992px,
 //xl: 1200px
 @media (max-width: 576px) {
-
+  .vision-cards {
+    .vision-card {
+      .vision-content {
+        .list-items {
+          columns: 1;
+        }
+      }
+    }
+  }
 }
 
 // Small styles - default: 480px <= x <= 991px
 @media (min-width: 576px) and (max-width: 992px) {
+  .vision-cards {
+    .vision-card {
+      .vision-content {
+        .list-items {
+          columns: 1;
+        }
+      }
+      .vision-image {
+        &.left {
+          border-right: 0;
+        }
+        &.right {
+          border-left: 0;
+        }
+      }
+    }
+  }
+
 
 }
 
 // Medium styles - default: 992px <= x <= 1199px
 @media (min-width: 992px) and (max-width: 1200px) {
-
+  .vision-cards {
+    .vision-card {
+      .vision-content {
+        .list-items {
+          columns: 2;
+        }
+      }
+      .vision-image {
+        &.left {
+          border-right: 10px solid #fff;
+        }
+        &.right {
+          border-left: 10px solid #fff;
+        }
+      }
+    }
+  }
 }
 
 // Large styles - default: 1200px <= x
 @media (min-width: 1200px) {
-
+  .vision-cards {
+    .vision-card {
+      .vision-content {
+        .list-items {
+          columns: 2;
+        }
+      }
+      .vision-image {
+        &.left {
+          border-right: 10px solid #fff;
+        }
+        &.right {
+          border-left: 10px solid #fff;
+        }
+      }
+    }
+  }
 }

@@ -35,7 +35,7 @@ if($blog_post_list) :
       array(
         'taxonomy' => 'category',
         'field'    => 'term_id',
-        'terms'    => $blog_post_list['blog_categories'],
+        'terms'    => $blog_post_list['blog_category'],
       ),
     )
   );
@@ -43,30 +43,32 @@ if($blog_post_list) :
   $posts = new WP_Query($args);
 
   if($posts->have_posts()) :
-    echo '<div class="' . $className . ' row" id="' . $id . '">';
-    $tools = array();
-
-    while($posts->have_posts()) :
-      $posts->the_post();
+    echo '<div class="container">';
+      echo '<div class="' . $className . '" id="' . $id . '">';
 
 
-      echo '<div class="col-12 my-2">';
-
-        echo '<div class="row no-gutters midtown-post-item">';
-          echo '<div class="col-md">';
-            echo '<div class="card-body">';
-              echo '<h3 class="post-title"><a href="' . get_permalink() . '" title="' . get_the_title() . '">' . get_the_title() . '</a></h3>';
-              echo '<span class="small">' . get_the_excerpt() . '</span>';
-              echo '<a class="text-primary link d-block" href="' . get_permalink() . '">Read More <i class="fal fa-arrow-right fa-sm"></i></a>';
-            echo '</div>';
+        echo '<div class="row">';
+          echo '<div class="col-12 col-md-3 offset-0 offset-md-1">';
+            if($blog_post_list['blog_category']) :
+              echo '<h2>' . get_term( $blog_post_list['blog_category'] )->name . '</h2>';
+              echo '<a href="' . get_permalink( get_option( 'page_for_posts' ) ) . '" title="' . get_the_title( get_option( 'page_for_posts' ) ) . '">';
+                echo 'View All  <i class="arrow fas fa-angle-double-right"></i>';
+              echo '</a>';
+            endif;
           echo '</div>';
 
-        echo '</div>';
+
+          echo '<div class="col-12 col-md-7">';
+            while($posts->have_posts()) :
+              $posts->the_post();
+
+              echo get_template_part( 'loop-post');
+            endwhile;
+
+          echo '</div>';
+
 
       echo '</div>';
-
-
-    endwhile;
     echo '</div>';
 
 
