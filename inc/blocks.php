@@ -31,6 +31,45 @@ add_action('acf/init', function () {
 	if( function_exists('acf_register_block_type') ) {
 
 
+
+		acf_register_block_type(array(
+			'name'              => 'testimonials-slider',
+			'title'             => __('Testimonial Slideshow'),
+			'description'       => __('Automatically sliding testamonails with proper markup.'),
+			'render_template'   => MIDTOWN_ABSPATH . '/inc/block-templates/testimonials-slider.php',
+			'category'          => 'midtown-blocks',
+			'icon'              => file_get_contents(MIDTOWN_ABSPATH . 'inc/img/logo.svg'),
+			'keywords'          => array( 'testimonial', 'slider', 'slides', 'midtown', 'mind', 'Mindshare' ),
+			'align'             => 'full',
+			'mode'            	=> 'edit',
+			'supports'					=> array(
+				'align' => false,
+	      'mode' => false,
+	      'jsx' => false
+			),
+			'enqueue_assets' => function(){
+				// We're just registering it here and then with the action get_footer we'll enqueue it.
+				wp_register_style( 'midtown-block-styles', MIDTOWN_URL . '/inc/css/block-styles.css' );
+				add_action( 'get_footer', function () {wp_enqueue_style('midtown-block-styles');});
+
+
+				wp_register_style( 'midtown-slick-slider', MIDTOWN_URL . '/inc/css/slick.css', array());
+				add_action( 'get_footer', function () {wp_enqueue_style('midtown-slick-slider');});
+				// wp_register_style( 'midtown-slick-slider-theme', MIDTOWN_URL . '/inc/css/slick-theme.css', array('midtown-slick-slider') );
+				// add_action( 'get_footer', function () {wp_enqueue_style('midtown-slick-slider-theme');});
+
+				wp_register_script('midtown-slick-js', MIDTOWN_URL . 'inc/js/slick.min.js', array('jquery'), MIDTOWN_PLUGIN_VERSION, true);
+				wp_enqueue_script('midtown-slick-js');
+
+				wp_register_script('midtown-slick-js-init', MIDTOWN_URL . 'inc/js/slick-init.js', array('jquery', 'midtown-slick-js'), MIDTOWN_PLUGIN_VERSION, true);
+				wp_enqueue_script('midtown-slick-js-init');
+
+
+
+				},
+			)
+		);
+
 		acf_register_block_type(array(
 			'name'              => 'vision-cards',
 			'title'             => __('Vision Cards'),
