@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: Santa Fe Climbing Center Support Plugin
+Plugin Name: Midtown District Santa Fe Theme Support Plugin
 Plugin URI: https://mind.sh/are
-Description: Provides a library of additional template gutenberg blocks for use on midtownsantafe.org.
+Description: Provides a library of additional template gutenberg blocks for use on midtowndistrictsantafe.com.
 Author: Mindshare Labs, Inc
 Version: 1.0.0
 Author: Mindshare Labs, Inc
