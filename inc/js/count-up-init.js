@@ -2,6 +2,9 @@
 	"use strict";
 
 	$(function () {
+
+
+
     $('.count-up').each(function() {
       var $this = $(this),
           countTo = $this.attr('data-count');
@@ -18,8 +21,6 @@
           $this.text(this.countNum).digits();
         }
       });
-
-
 
     });
 
