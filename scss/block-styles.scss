@@ -249,7 +249,6 @@ $dark:          #2B2B2B;
         background-image: url('../img/element_white.png');
       }
       h2.background {
-        background-color: $light;
         padding: 3px;
         text-transform: uppercase;
         color: $primary;
@@ -257,11 +256,12 @@ $dark:          #2B2B2B;
         display: inline;
         line-height: 1.2em;
         z-index: 20;
-        white-space: break-spaces;
+        white-space: break-spaces; 
         position: relative;
       }
       a {
         color: $primary;
+        background-color: #f8f9fa;
         @include transition(500ms);
         &:hover {
           text-decoration: none;
