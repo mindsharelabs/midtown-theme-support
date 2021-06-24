@@ -48,11 +48,11 @@ if(count($multi_link_feature['rectangle']) >= 3) :
             echo '<div class="tile ' . $item['link_align'] . ' ' . ($item['background_image'] ? '' : 'no-background') . '" ' . ($item['background_image'] ? 'style="background-image: url(' . $item['background_image']['sizes']['medium_large'] . ')"' : '') . '>';
               echo '<div class="blur"></div>';
               if($item['link']) :
-                echo '<h2 class="background">&nbsp;&nbsp;';
+                echo '<h2 class="background">';
                   echo ('<a href="' . $item['link']['url'] .'" title="' . $item['link']['title'] . '" target="' . $item['link']['target'] . '">');
                     echo $item['link']['title'];
                   echo '</a>';
-                echo '&nbsp;&nbsp;</h2>';
+                echo '</h2>';
               endif;
             echo '</div>';
 

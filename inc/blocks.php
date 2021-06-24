@@ -30,6 +30,36 @@ add_action('acf/init', function () {
 	// Check function exists.
 	if( function_exists('acf_register_block_type') ) {
 
+
+		acf_register_block_type(array(
+			'name'              => 'Category Cards',
+			'title'             => __('Branded Container'),
+			'description'       => __('A branded container block with a colorful background.'),
+			'render_template'   => MIDTOWN_ABSPATH . '/inc/block-templates/branded-container.php',
+			'category'          => 'midtown-blocks',
+			'icon'              => array(
+			  'background' => '#E6E6E6',
+			  'foreground' => '#D94D42',
+			  'src' 			 => 'screenoptions',
+			),
+			'keywords'          => array( 'container', 'brand', 'midtown', 'mind', 'Mindshare' ),
+			'align'             => 'full',
+			'mode'            	=> 'preview',
+			'supports'					=> array(
+				'align' => false,
+				'mode' => false,
+				'jsx' => true
+			),
+			'enqueue_assets' => function(){
+				// We're just registering it here and then with the action get_footer we'll enqueue it.
+				wp_register_style( 'midtown-block-styles', MIDTOWN_URL . '/inc/css/block-styles.css' );
+				add_action( 'get_footer', function () {wp_enqueue_style('midtown-block-styles');});
+
+				},
+			)
+		);
+
+
 		acf_register_block_type(array(
 			'name'              => 'branded-container',
 			'title'             => __('Branded Container'),
@@ -53,20 +83,6 @@ add_action('acf/init', function () {
 				// We're just registering it here and then with the action get_footer we'll enqueue it.
 				wp_register_style( 'midtown-block-styles', MIDTOWN_URL . '/inc/css/block-styles.css' );
 				add_action( 'get_footer', function () {wp_enqueue_style('midtown-block-styles');});
-
-
-				wp_register_style( 'midtown-slick-slider', MIDTOWN_URL . '/inc/css/slick.css', array());
-				add_action( 'get_footer', function () {wp_enqueue_style('midtown-slick-slider');});
-				// wp_register_style( 'midtown-slick-slider-theme', MIDTOWN_URL . '/inc/css/slick-theme.css', array('midtown-slick-slider') );
-				// add_action( 'get_footer', function () {wp_enqueue_style('midtown-slick-slider-theme');});
-
-				wp_register_script('midtown-slick-js', MIDTOWN_URL . 'inc/js/slick.min.js', array('jquery'), MIDTOWN_PLUGIN_VERSION, true);
-				wp_enqueue_script('midtown-slick-js');
-
-				wp_register_script('midtown-slick-js-init', MIDTOWN_URL . 'inc/js/slick-init.js', array('jquery', 'midtown-slick-js'), MIDTOWN_PLUGIN_VERSION, true);
-				wp_enqueue_script('midtown-slick-js-init');
-
-
 
 				},
 			)

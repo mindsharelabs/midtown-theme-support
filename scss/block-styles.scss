@@ -21,7 +21,7 @@ $dark:          #2B2B2B;
   background-repeat: no-repeat;
   transition: all 0.25s ease;
   background-image: url('../img/element_white.png');
-} 
+}
 .testimonials-slider {
   .testimonial-slide {
     .blockquote {
@@ -250,11 +250,12 @@ $dark:          #2B2B2B;
       }
       h2.background {
         background-color: $light;
+        padding: 3px;
         text-transform: uppercase;
         color: $primary;
         font-size: 2.7em;
         display: inline;
-        line-height: 1.7em;
+        line-height: 1.2em;
         z-index: 20;
         white-space: break-spaces;
         position: relative;
